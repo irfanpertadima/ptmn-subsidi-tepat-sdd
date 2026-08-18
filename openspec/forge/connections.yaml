@@ -21,6 +21,6 @@ github:
   branchPrefix: forge/
 
 sonarqube:
-  host: http://localhost:9000    # editable local SonarQube host (override with SONAR_HOST_URL)
+  host: http://localhost:9001    # editable local SonarQube host (override with SONAR_HOST_URL)
   edition: community
   projectBase: ptmn-subsiditepat-fe   # ephemeral per-PR key: <projectBase>-pr-<n>

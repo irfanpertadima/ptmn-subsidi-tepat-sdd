@@ -39,5 +39,5 @@
 ## 7. Compliance & Review
 - [x] 7.1 Verify controls tagged in the spec: PDP-NO-PII-IN-LOGS, ISO-A8.15-LOGGING, ISO-A8.28-SECURE-CODING
 - [x] 7.2 Confirm no user-facing string literal is rendered from a component
-- [ ] 7.3 Run `node openspec/forge/forge.mjs scan --workorder wo-01-app-foundation` and clear the SonarQube quality gate
+- [x] 7.3 Run `node openspec/forge/forge.mjs scan --workorder wo-01-app-foundation` and clear the SonarQube quality gate
 - [ ] 7.4 Open the PR via `node openspec/forge/forge.mjs pr --workorder wo-01-app-foundation`
