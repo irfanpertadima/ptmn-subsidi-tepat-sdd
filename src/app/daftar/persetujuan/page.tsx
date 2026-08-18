@@ -1,7 +1,10 @@
-import { StepPlaceholder } from '@/components/StepPlaceholder';
+import { Suspense } from 'react';
+import { ConsentGate } from '@/consent/ConsentGate';
 
 export default function PersetujuanPage() {
   return (
-    <StepPlaceholder titleKey="daftar.persetujuan.title" workOrder="wo-02-onboarding-consent" />
+    <Suspense>
+      <ConsentGate />
+    </Suspense>
   );
 }
