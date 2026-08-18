@@ -34,7 +34,7 @@ const DENIED_FIELD_PATTERNS: readonly RegExp[] = [
 const NIK_SHAPE = /\b(?:\d[\s-]?){15}\d\b/g;
 
 /** Inline image payloads and object URLs: a document image that slipped into a string. */
-const DATA_URL_SHAPE = /data:[a-z-]+\/[a-z0-9.+-]+;base64,[A-Za-z0-9+/=]+/gi;
+const DATA_URL_SHAPE = /data:[a-z-]+\/[a-z0-9.+-]+;base64,[a-z0-9+/=]+/gi;
 const BLOB_URL_SHAPE = /blob:https?:\/\/[^\s"']+/gi;
 
 /**

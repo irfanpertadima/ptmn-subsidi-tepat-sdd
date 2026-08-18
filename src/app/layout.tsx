@@ -17,7 +17,7 @@ export const viewport: Viewport = {
   // Not capped: the layout must survive 200% zoom (WCAG 2.1 AA).
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   // lang="id" — Bahasa Indonesia is the launch language (PRD, i18n requirements).
   return (
     <html lang="id">

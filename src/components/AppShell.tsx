@@ -10,7 +10,7 @@ import { t } from '@/i18n';
  * The application chrome every route renders inside. Product screens are built by later work
  * orders; this provides the header, the main landmark, and the skip link.
  */
-export function AppShell({ children }: { children: React.ReactNode }) {
+export function AppShell({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <Box sx={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
       {/* Keyboard users must be able to bypass the header (WCAG 2.4.1). */}

@@ -7,7 +7,7 @@ import { reportError } from '@/telemetry';
  * Last-resort boundary for errors thrown in the root layout. Replaces the whole document, so it
  * cannot use the theme — it still reports through the scrubbing boundary.
  */
-export default function GlobalError({ error }: { error: Error & { digest?: string } }) {
+export default function GlobalError({ error }: Readonly<{ error: Error & { digest?: string } }>) {
   useEffect(() => {
     reportError(error, { digest: error.digest, boundary: 'global' });
   }, [error]);

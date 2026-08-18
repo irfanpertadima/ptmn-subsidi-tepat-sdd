@@ -18,7 +18,7 @@ function parseHex(hex: string): [number, number, number] {
   if (!/^[0-9a-fA-F]{6}$/.test(full)) {
     throw new Error(`Not a hex colour: ${hex}`);
   }
-  const int = parseInt(full, 16);
+  const int = Number.parseInt(full, 16);
   return [(int >> 16) & 0xff, (int >> 8) & 0xff, int & 0xff];
 }
 

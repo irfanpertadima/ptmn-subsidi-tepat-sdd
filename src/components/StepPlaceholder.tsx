@@ -12,10 +12,10 @@ import { t } from '@/i18n';
 export function StepPlaceholder({
   titleKey,
   workOrder,
-}: {
+}: Readonly<{
   titleKey: MessageKey;
   workOrder: string;
-}) {
+}>) {
   return (
     <Box>
       <Typography variant="h5" component="h1" sx={{ fontWeight: 700, mb: 1 }}>

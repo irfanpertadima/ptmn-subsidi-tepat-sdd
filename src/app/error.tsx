@@ -16,10 +16,10 @@ import { reportError } from '@/telemetry';
 export default function RouteError({
   error,
   reset,
-}: {
+}: Readonly<{
   error: Error & { digest?: string };
   reset: () => void;
-}) {
+}>) {
   useEffect(() => {
     reportError(error, { digest: error.digest });
   }, [error]);
