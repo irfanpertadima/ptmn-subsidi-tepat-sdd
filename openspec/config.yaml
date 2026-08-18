@@ -1,0 +1,56 @@
+# OpenSpec config — Pertamina Subsidi Tepat, Frontend (Forge-flavored governed AI-SDLC).
+# `context` and `rules` are injected into every artifact.
+# `operations.apply.guidance` is surfaced to the agent by `openspec instructions apply --json`.
+
+schema: forge-workorder
+
+context: |
+  Product: Pertamina Subsidi Tepat — the national registration platform that lets citizens
+    register vehicles to purchase subsidized fuel (Pertalite / Bio Solar) with a QR code.
+  This repo: specs, governance artifacts, AND the frontend implementation.
+
+  Tech stack: Next.js (App Router) + TypeScript, React Server/Client Components.
+    Styling and components follow the design system approved in the Epic's ux-design.md.
+    Forms: React Hook Form + Zod schema validation. Data fetching via typed API clients.
+    Testing: Vitest + React Testing Library for units, Playwright for critical journeys.
+  Coding standards: ESLint + Prettier, strict TypeScript (no `any` in application code),
+    conventional commits, colocated tests.
+
+  Language & locale: primary UI language is Bahasa Indonesia. All user-facing copy,
+    validation messages, and error states must be written in Bahasa Indonesia.
+    Format dates as DD/MM/YYYY and currency as IDR (Rp).
+
+  Personal data handled: NIK (national ID number), full name, address, phone number,
+    KTP photograph, STNK document, vehicle photographs, and license plate (nomor polisi).
+    Treat ALL of these as personal data under UU PDP.
+
+  Privacy-by-design (UU PDP No. 27/2022): minimize personal data; state lawful basis, consent,
+    retention, and data-subject rights for anything touching personal data. Never log NIK,
+    document images, or full plate numbers. Mask NIK in the UI except the last 4 digits.
+  Security baseline (ISO 27001 Annex A): secure coding (A.8.28), crypto (A.8.24),
+    access control (A.5.15), no secrets or PII in logs.
+  Accessibility: WCAG 2.1 AA. The audience includes low-literacy and low-bandwidth users on
+    entry-level Android devices — keep flows tolerant of poor connectivity and slow uploads.
+
+rules:
+  specs:
+    - For any feature handling personal data, state lawful basis, consent, retention, and the data-subject rights it supports (UU PDP).
+    - Tag applicable compliance controls in the requirement text, e.g. "(control: PDP-CONSENT)" / "(control: ISO-A8.24-CRYPTO)".
+    - Write acceptance scenarios against the Bahasa Indonesia UI copy the user actually sees.
+  design:
+    - Apply secure engineering principles; document cryptography and access control (ISO 27001 A.8.24 / A.5.15).
+    - Document upload handling explicitly - size limits, accepted MIME types, client-side compression, and retry on flaky connections.
+  tasks:
+    - Include tasks for tests and for every compliance control tagged in the specs.
+    - Include an accessibility check task (keyboard navigation, labels, contrast) for any task adding UI.
+
+operations:
+  apply:
+    guidance:
+      - Implement exactly ONE work order per apply — the one named or in context. Do not start another in the same session.
+      - Before writing code, run `node openspec/forge/forge.mjs gate --change <id>`; if it reports a blocking issue, stop and report.
+      - Keep all changes on the work order's branch. When the tasks are complete, run `node openspec/forge/forge.mjs pr --workorder <id>` to open the PR.
+      - Surface unexpected scope instead of silently narrowing, deferring, or simplifying specified behavior.
+  archive:
+    guidance:
+      - Archive a work order only after its PR is merged and the JIRA story is Done.

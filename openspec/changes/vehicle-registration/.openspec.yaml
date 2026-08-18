@@ -1,0 +1,5 @@
+schema: forge-epic
+created: 2026-08-18
+# Epics carry no archivable spec deltas of their own — the delta requirements live in the
+# per-work-order changes (schema: forge-workorder). See openspec/schemas/forge-epic/schema.yaml.
+skip_specs: true

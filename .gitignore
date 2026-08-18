@@ -1,0 +1,7 @@
+
+# Forge kit
+.env
+**/.forge/
+**/.scannerwork/
+**/ux-preview/node_modules/
+**/ux-preview/dist/

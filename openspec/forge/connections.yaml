@@ -1,0 +1,26 @@
+# Forge companion connections — NON-SECRET settings only (safe to commit).
+# Tokens/secrets live in .env or the environment (SONAR_TOKEN, JIRA_TOKEN,
+# CONFLUENCE_TOKEN, GITHUB_TOKEN) — never here.
+#
+# Project: Pertamina Subsidi Tepat — Frontend (Next.js + TypeScript)
+
+confluence:
+  baseUrl: https://the-direction.atlassian.net/wiki
+  space: DESIGN
+
+jira:
+  baseUrl: https://the-direction.atlassian.net
+  project: KAN
+  # KAN is a next-gen (team-managed) project: issue types are Epic/Task/Subtask/Asset.
+  # There is no "Story" type, so work orders are created as Task.
+  epicIssueType: Epic
+  storyIssueType: Task
+
+github:
+  repo: irfanpertadima/ptmn-subsidi-tepat-sdd
+  branchPrefix: forge/
+
+sonarqube:
+  host: http://localhost:9000    # editable local SonarQube host (override with SONAR_HOST_URL)
+  edition: community
+  projectBase: ptmn-subsiditepat-fe   # ephemeral per-PR key: <projectBase>-pr-<n>
