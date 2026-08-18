@@ -65,9 +65,11 @@ function mdToStorage(md) {
   return out.join('\n');
 }
 
-function storyTitle(changeDir, wo) {
-  const p = path.join(changeDir, 'story.md');
-  const t = existsSync(p) ? (readFileSync(p, 'utf8').match(/^#\s+(?:Work Order:\s*)?(.+)$/m) || [])[1] : null;
+function storyTitle(changeDir, wo, doc) {
+  // Work orders carry story.md. Epics do not, so fall back to the H1 of the doc being published —
+  // otherwise every epic page is titled `[<id>] <id>`.
+  const p = [path.join(changeDir, 'story.md'), ...(doc ? [path.join(changeDir, doc)] : [])].find(existsSync);
+  const t = p ? (readFileSync(p, 'utf8').match(/^#\s+(?:Work Order:\s*)?(.+)$/m) || [])[1] : null;
   return `[${wo}] ${(t && t.trim()) || wo}`;
 }
 
@@ -129,7 +131,7 @@ async function main() {
   const conn = readConnections(root);
   const base = process.env.CONFLUENCE_BASE_URL || conn.confluence?.baseUrl || 'https://your-org.atlassian.net/wiki';
   const space = conn.confluence?.space || 'FORGE';
-  const title = storyTitle(changeDir, a.workorder);
+  const title = storyTitle(changeDir, a.workorder, a.doc);
   const docPath = path.join(changeDir, a.doc);
 
   console.log(`\nForge Confluence ${a.action} — work order ${a.workorder}`);

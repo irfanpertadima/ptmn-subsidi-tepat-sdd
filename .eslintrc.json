@@ -1,0 +1,29 @@
+{
+  "extends": [
+    "next/core-web-vitals",
+    "next/typescript",
+    "prettier"
+  ],
+  "ignorePatterns": [
+    "openspec/changes/*/ux-preview/**",
+    ".next/**",
+    "node_modules/**",
+    "next-env.d.ts"
+  ],
+  "rules": {
+    "@typescript-eslint/no-explicit-any": "error",
+    "no-restricted-imports": [
+      "error",
+      {
+        "patterns": [
+          {
+            "group": [
+              "**/telemetry/providers/*"
+            ],
+            "message": "Import from '@/telemetry' instead. Providers are only reachable through the PII scrubber (control: PDP-NO-PII-IN-LOGS)."
+          }
+        ]
+      }
+    ]
+  }
+}

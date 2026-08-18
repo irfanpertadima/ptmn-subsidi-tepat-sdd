@@ -5,3 +5,12 @@
 **/.scannerwork/
 **/ux-preview/node_modules/
 **/ux-preview/dist/
+
+# Next.js / Node
+node_modules/
+.next/
+next-env.d.ts
+*.tsbuildinfo
+playwright-report/
+test-results/
+coverage/
