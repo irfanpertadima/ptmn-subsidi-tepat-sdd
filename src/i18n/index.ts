@@ -13,7 +13,7 @@ export const LOCALE = 'id-ID';
  * string: a blank label on a government form is worse than a visible defect in review
  * (design.md, "Message catalogue with fail-loud lookups").
  */
-export function t(key: MessageKey): string {
+export function t(key: MessageKey, params?: Readonly<Record<string, string | number>>): string {
   const message = messagesId[key];
   if (message === undefined) {
     const error = new Error(`Missing message for key: ${String(key)}`);
@@ -23,7 +23,17 @@ export function t(key: MessageKey): string {
     void import('@/telemetry').then(({ reportError }) => reportError(error));
     return String(key);
   }
-  return message;
+  return params ? interpolate(message, params) : message;
+}
+
+/**
+ * Substitutes `{name}` placeholders. A placeholder with no matching param is left as written
+ * rather than blanked, so the omission is visible in review instead of silently disappearing.
+ */
+function interpolate(message: string, params: Readonly<Record<string, string | number>>): string {
+  return message.replace(/\{(\w+)\}/g, (whole, name: string) =>
+    Object.hasOwn(params, name) ? String(params[name]) : whole,
+  );
 }
 
 /** Formats a date as DD/MM/YYYY, the format used across the product. */

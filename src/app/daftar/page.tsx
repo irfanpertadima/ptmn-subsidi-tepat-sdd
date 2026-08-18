@@ -1,5 +1,5 @@
-import { StepPlaceholder } from '@/components/StepPlaceholder';
+import { ProgramExplainer } from '@/registration/ProgramExplainer';
 
 export default function DaftarPage() {
-  return <StepPlaceholder titleKey="daftar.title" workOrder="wo-02-onboarding-consent" />;
+  return <ProgramExplainer />;
 }
